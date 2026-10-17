@@ -1,0 +1,17 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npx --yes pnpm@10.34.7 install --frozen-lockfile
+    build:
+      commands:
+        - PORT=5000 BASE_PATH=/ npx --yes pnpm@10.34.7 --filter @workspace/prarthana-portfolio run build
+  artifacts:
+    baseDirectory: artifacts/prarthana-portfolio/dist/public
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+      - ~/.local/share/pnpm/store/**/*
